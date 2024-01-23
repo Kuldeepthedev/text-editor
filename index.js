@@ -10,7 +10,7 @@ const server = http.createServer(app);
 
 const io = require('socket.io')(server, {
     cors: {
-      origin: "https://texteditorbykuldeepkumar.netlify.app",
+      origin: "https://texteditorbykuldeepkumar.netlify.app/",
       methods: ["GET", "POST"]
     },
     cookie: {

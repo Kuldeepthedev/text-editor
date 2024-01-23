@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 
 const createDocument = async(req,resp)=>{
     const { title, password} = req.body;
+    console.log(title,password)
     const document = await Document.findOne({title:title});
     try{
         if (document) {
