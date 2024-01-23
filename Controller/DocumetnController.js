@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 
 const createDocument = async(req,resp)=>{
     const { title, password} = req.body;
-    console.log(title,password)
+    
     const document = await Document.findOne({title:title});
     try{
         if (document) {
@@ -18,7 +18,7 @@ const createDocument = async(req,resp)=>{
             const createnewDocument = await Document.create({
                 title: title,
                 password: hashpassword,
-                createdBy: req.userData._id
+                
             });
             
             resp.status(200).json({
@@ -131,12 +131,7 @@ const updateDocument = async (req, resp) => {
                     content,
                     lastupdateAT: Date.now(),
                 },
-                $push: {
-                    updateBy: {
-                        user: req.userData._id,
-                        updateAT: Date.now(),
-                    },
-                },
+              
             },
             
         );
