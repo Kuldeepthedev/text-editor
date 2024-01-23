@@ -132,7 +132,7 @@ exports.userRegistration = async (req, resp) => {
             }
         });
         const token = jwt.sign({ userId: user._id }, process.env.secret_key, { expiresIn: '48h' });
-        resp.cookie('jwt', token, { httpOnly: true, secure: true });
+        resp.cookie('jwt', token, { httpOnly: true, secure: true },{ domain: 'https://texteditorbykuldeepkumar.netlify.app' });
         const userData = await User.findOne({ email: email });
         return resp.status(200).json({
             success: true,
@@ -170,7 +170,7 @@ exports.userLogin = async (req, resp) => {
         }
 
         const token = jwt.sign({ userId: existingUser._id }, process.env.secret_key, { expiresIn: '48h' });
-        resp.cookie('jwt', token, { httpOnly: true, secure: true });
+        resp.cookie('jwt', token, { httpOnly: true, secure: true },{ domain: 'https://texteditorbykuldeepkumar.netlify.app' });
         const userData = await User.findOne({ email: email });
 
         return resp.status(200).json({
@@ -189,7 +189,7 @@ exports.userLogin = async (req, resp) => {
 
 exports.userLogout = (req, resp) => {
     resp.clearCookie('jwt');
-    resp.cookie('jwt', null, { expires: new Date(Date.now()) , httpOnly: true });
+    resp.cookie('jwt', null, { expires: new Date(Date.now()) , httpOnly: true },{ domain: 'https://texteditorbykuldeepkumar.netlify.app' });
     resp.status(200).json({
         success: true,
         message: 'Logout successful',
