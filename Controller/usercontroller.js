@@ -170,7 +170,7 @@ exports.userLogin = async (req, resp) => {
         }
 
         const token = jwt.sign({ userId: existingUser._id }, process.env.secret_key, { expiresIn: '48h' });
-        resp.cookie('jwt', token, { httpOnly: true, secure: true, domain: '.netlify.app' });
+        resp.cookie('jwt', token, { httpOnly: true, domain: '.netlify.app' });
 
         const userData = await User.findOne({ email: email });
 
@@ -190,7 +190,7 @@ exports.userLogin = async (req, resp) => {
 
 exports.userLogout = (req, resp) => {
     resp.clearCookie('jwt');
-    resp.cookie('jwt', token, { httpOnly: true, secure: true, domain: '.netlify.app' });
+    resp.cookie('jwt', token, { httpOnly: true, domain: '.netlify.app' });
 
     resp.status(200).json({
         success: true,
