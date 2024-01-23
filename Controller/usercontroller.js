@@ -132,7 +132,7 @@ exports.userRegistration = async (req, resp) => {
             }
         });
         const token = jwt.sign({ userId: user._id }, process.env.secret_key, { expiresIn: '48h' });
-        resp.cookie('jwt', token, { httpOnly: true, secure: true },{ domain: 'https://texteditorbykuldeepkumar.netlify.app' });
+        resp.cookie('jwt', token, { httpOnly: true, secure: true } );
         const userData = await User.findOne({ email: email });
         return resp.status(200).json({
             success: true,
@@ -170,7 +170,7 @@ exports.userLogin = async (req, resp) => {
         }
 
         const token = jwt.sign({ userId: existingUser._id }, process.env.secret_key, { expiresIn: '48h' });
-        resp.cookie('jwt', token, { httpOnly: true, domain: '.netlify.app' });
+        resp.cookie('jwt', token, { httpOnly: true, });
 
         const userData = await User.findOne({ email: email });
 

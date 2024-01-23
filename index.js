@@ -20,7 +20,7 @@ const io = require('socket.io')(server, {
       }
   });
 
-app.use(cookieParser());
+app.use(cookieParser({ domain: 'texteditorbykuldeepkumar.netlify.app' }));
 app.use(bodyParser.json());
 app.use(cors({
     origin: 'https://texteditorbykuldeepkumar.netlify.app',
