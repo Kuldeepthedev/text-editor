@@ -10,7 +10,7 @@ const server = http.createServer(app);
 
 const io = require('socket.io')(server, {
     cors: {
-      origin: "http://localhost:3000",
+      origin: "https://texteditorbykuldeepkumar.netlify.app",
       methods: ["GET", "POST"]
     },
     cookie: {
@@ -23,7 +23,7 @@ const io = require('socket.io')(server, {
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: 'https://texteditorbykuldeepkumar.netlify.app',
     credentials: true,
 }));
 const document = require('./Routes/DocumentRoute')
